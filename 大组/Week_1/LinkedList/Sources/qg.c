@@ -16,12 +16,13 @@ int main()
 		printf("3.往链表尾部插入节点\n");
 		printf("4.删除指定的节点\n");
 		printf("5.遍历链表\n");
-		printf("6.反转链表\n\n");
+		printf("6.反转链表\n");
+		printf("7.找出链表中点节点\n\n");
 		printf("请选择功能: ");
 		int func;
 		scanf("%d", &func);//选择功能
 		system("cls");
-		if(func==1)
+		if (func == 1)
 		{
 			int num;
 			while (1)
@@ -36,16 +37,17 @@ int main()
 			if (head == NULL) exsist = 0;
 			else exsist = 1;
 		}
-		else if(func>6||func<1) printf("妹有这功能哇!!!\n");
-		else if(exsist)//已存有链表才能进行其他操作
-		switch (func) {
-		case 2: {AddToHead(head1); break; }
-		case 3: {AddToTail(tail1); break; }
-		case 4: {DeleteNode(head1, tail1); break; }
-		case 5: {DisplayLL(head); break; }
-		case 6: {UpsideDown(head1,tail1); break; }
-		}
-		else if(!exsist) printf("妹有链表给我操作哇哇哇!!!\n");
+		else if (func > 7 || func < 1) printf("妹有这功能哇!!!\n");
+		else if (exsist)//已存有链表才能进行其他操作
+			switch (func) {
+			case 2: {AddToHead(head1); break; }
+			case 3: {AddToTail(tail1); break; }
+			case 4: {DeleteNode(head1, tail1); break; }
+			case 5: {DisplayLL(head); break; }
+			case 6: {UpsideDown(head1, tail1); break; }
+			case 7: {CenterPoint(head); break; }
+			}
+		else if (!exsist) printf("妹有链表给我操作哇哇哇!!!\n");
 		system("pause");
 		system("cls");
 	}
