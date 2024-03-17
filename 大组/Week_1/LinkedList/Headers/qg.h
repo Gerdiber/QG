@@ -2,12 +2,13 @@ typedef struct LinkList {
 	char str[100] = {};
 	struct LinkList* next;
 } LL,*LLP,**LLPP;
+//LL用于创建结构体,LLP用于创建链表头尾及链表操作指针,LLPP用于在函数内修改头尾指针
 
-char a[10] = {};
+char a[10] = {};//用于清除输入选项后缓冲区残余字符
 
 void CreateOrDestoryLinkList(int num, LLPP head, LLPP tail)
 {
-	if (*head == NULL && num != 0)
+	if (*head == NULL && num != 0)//没有链表且长度非零
 	{
 		gets_s(a);
 		LLP p1 = (LLP)malloc(sizeof(LL)),p2 = NULL;
@@ -23,7 +24,7 @@ void CreateOrDestoryLinkList(int num, LLPP head, LLPP tail)
 		}
 		p2->next = NULL;
 	}
-	else if (*head != NULL)
+	else if (*head != NULL)//有链表
 	{
 		LLP p1 = *head, p2 = *head;
 		while (p1->next != NULL)
@@ -34,11 +35,11 @@ void CreateOrDestoryLinkList(int num, LLPP head, LLPP tail)
 		}
 		free(p1);
 		*head = NULL, *tail = NULL;
-		if (num != 0) CreateOrDestoryLinkList(num, head, tail);
+		if (num != 0) CreateOrDestoryLinkList(num, head, tail);//非0的话销毁后重新创建链表
 	}
 }
 
-void AddToHead(LLPP head)
+void AddToHead(LLPP head)//插头
 {
 	gets_s(a);
 	LLP p1 = (LLP)malloc(sizeof(LL));
@@ -49,7 +50,7 @@ void AddToHead(LLPP head)
 	printf("插入头节点完成\n");
 }
 
-void AddToTail(LLPP tail)
+void AddToTail(LLPP tail)//插尾
 {
 	gets_s(a);
 	LLP p1 = (LLP)malloc(sizeof(LL));
@@ -61,7 +62,7 @@ void AddToTail(LLPP tail)
 	printf("插入尾节点完成\n");
 }
 
-void DeleteNode(LLPP head,LLPP tail)
+void DeleteNode(LLPP head,LLPP tail)//删除节点
 {
 	int func;
 	LLP p1 = *head, p2 = *head;
@@ -74,27 +75,27 @@ void DeleteNode(LLPP head,LLPP tail)
 		if (func == 1 || func == 2) break;
 	}
 	gets_s(a);
-	if (func == 1)
+	if (func == 1)//查找删除
 	{
 		char Find[100] = {};
 		printf("请输入目标含有的内容:");
 		gets_s(Find);
 		while (p1 != NULL)
 		{
-			if (strstr(p1->str, Find) != NULL) 
+			if (strstr(p1->str, Find) != NULL)//发现含有目标字符串的节点
 			{
-				if (p1 == *head && p1->next != NULL) *head = p1->next;
-				else if (p1 == *head && p1->next == NULL) *head = NULL, * tail = NULL;
+				if (p1 == *head && p1->next != NULL) *head = p1->next;//为头节点且有下一个节点
+				else if (p1 == *head && p1->next == NULL) *head = NULL, * tail = NULL;//为头节点但没有下一个
 				else
 				{
-					while (strstr(p1->str, Find) != NULL)
+					while (strstr(p1->str, Find) != NULL)//用于跳过连续一段符合的节点甚至跳到结束
 					{ 
 						p1 = p1->next;
 						if (p1 == NULL) break;
 					}
-					if (p1 == NULL) { *tail = p2; p2->next = NULL; break; }
-					else if (p1->next == NULL) { p2->next = p1; *tail = p1; break; }
-					else p2->next = p1;
+					if (p1 == NULL) { *tail = p2; p2->next = NULL; break; }//跳到结束
+					else if (p1->next == NULL) { p2->next = p1; *tail = p1; break; }//跳到最后一个
+					else p2->next = p1;//跳在最后一个前.正常连接
 				}
 			}
 			p2 = p1;
@@ -102,17 +103,17 @@ void DeleteNode(LLPP head,LLPP tail)
 		}
 		printf("所有含有该内容的节点已删除\n");
 	}
-	else
+	else//选择删除
 	{
 		printf("当前链表列表如下,请选择\n(选择 0 取消删除并返回)\n");
 		while (p1 != NULL)
 		{
-			count++;
+			count++;//总计节点数
 			printf("[%d]%s\n", count, p1->str);
 			p1 = p1->next;
 		}
 		p1 = *head;
-		int num;
+		int num;//选择节点序号
 		while (1)
 		{
 			printf("请输入想要删除的节点序号:");
@@ -124,7 +125,7 @@ void DeleteNode(LLPP head,LLPP tail)
 		else if (num == 1) *head = p1->next;
 		else
 		{
-			for (int i = 1; i < num; i++)
+			for (int i = 1; i < num; i++)//从1开始,跳num-1次
 			{
 				p2 = p1;
 				p1 = p1->next;
@@ -149,7 +150,7 @@ void DisplayLL(LLP head)
 void UpsideDown(LLPP head,LLPP tail)
 {
 	int a = 0;
-	LLP p1 = *head, p2 = *head, p3 = *head;
+	LLP p1 = *head, p2 = *head, p3 = *head;//p3正向遍历,p2与p1反向连接
 	while (p3 != NULL)
 	{
 		a++;
