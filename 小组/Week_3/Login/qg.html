@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>登录页</title>
+</head>
+
+<body>
+    <div class="header">
+        Welcome To QGStudio
+        <span></span>
+    </div>
+    <div class="pageholder">
+
+        <div class="login page">
+            <h1 class="title"
+                style="text-align: center;padding: 20px 0;color: blueviolet;text-shadow: 2px 2px 5px blue;">
+                登录QGStudio
+            </h1>
+            <button class="turnToR Tbtn">没有账号?立即注册></button>
+            <form class="logindata">
+                <input type="text" name="username" placeholder="请输入用户名" class="u"><br>
+                <input type="password" name="password" placeholder="请输入密码" class="p">
+                <div class="warning">
+                    <span class="lwarn1 hide">用户名和密码不能为空</span>
+                    <span class="lwarn2 hide">用户名或密码错误</span>
+                </div>
+                <button type="submit" class="loginbtn">登录</button>
+            </form>
+        </div>
+
+        <div class="register page phide">
+            <h1 class="title" style="text-align: center;padding: 20px 0;color: #47cbff;">
+                注册新账号
+            </h1>
+            <button class="turnToL Tbtn">已有账号,返回登录></button>
+            <form class="registerdata">
+                <input type="text" name="username" placeholder="请输入用户名" class="u"><br>
+                <input type="password" name="password" placeholder="请输入密码" class="p">
+                <div class="warning">
+                    <span class="rwarn1 hide">用户名和密码不能为空</span>
+                </div>
+                <button type="submit" class="registerbtn">注册</button>
+            </form>
+        </div>
+
+    </div>
+    <script src="fun.js"></script>
+</body>
+
+</html>
